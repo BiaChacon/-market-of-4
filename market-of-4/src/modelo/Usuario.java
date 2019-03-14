@@ -8,6 +8,8 @@ public class Usuario {
 	String senha;
 	boolean tipo;
 	
+	public Usuario() {}
+	
 	public Usuario(int id, String nome, String email, String senha, boolean tipo) {
 		super();
 		this.id = id;

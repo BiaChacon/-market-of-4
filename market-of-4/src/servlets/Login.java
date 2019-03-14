@@ -20,11 +20,16 @@ public class Login extends HttpServlet {
 		String senha = request.getParameter("senha");
 		
 		Usuario u = new Usuario(email, senha);
+		Usuario us = new Usuario();
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		usuarioDAO.loginUsuario(u);
 		
+		us = usuarioDAO.loginUsuario(u);
 		
-		
+		if(us.isTipo()) {
+		response.sendRedirect("/Logista");
+		}else {
+		response.sendRedirect("/ListaProdutoServlet");
+		}
 		
 	}
 }
