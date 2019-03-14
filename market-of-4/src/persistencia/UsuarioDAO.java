@@ -16,7 +16,7 @@ public class UsuarioDAO {
 
     private final String LOGIN = "SELECT * FROM USUARIO WHERE email = ? AND senha = ?;";
 
-    private final String INSERT = "INSERT INTO USUARIO(nome, email, senha) VALUES (?, ?, ?);";
+    private final String INSERT = "INSERT INTO USUARIO(nome, email, senha, tipo) VALUES (?, ?, ?, ?);";
 
     private final String DELETE = "DELETE FROM USUARIO WHERE id = ?;";
 
