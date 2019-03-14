@@ -8,15 +8,23 @@ public class Produto {
 	String Descricao;
 	int estoque;
 	
-	public Produto(int id, double preco, String nome, String descricao, int estoque) {
+	public Produto(int id, String nome, double preco,  String descricao, int estoque) {
 		super();
 		this.id = id;
-		this.preco = preco;
 		this.nome = nome;
+		this.preco = preco;
 		this.Descricao = descricao;
 		this.estoque = estoque;
 	}
 
+	public Produto(String nome, double preco,  String descricao, int estoque) {
+		super();
+		this.nome = nome;
+		this.preco = preco;
+		this.Descricao = descricao;
+		this.estoque = estoque;
+	}
+	
 	public int getId() {
 		return id;
 	}

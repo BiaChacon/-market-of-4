@@ -14,7 +14,7 @@ public class ProdutoDAO {
 
     private ConnectionDatabase c = new ConnectionDatabase();
 
-    private final String INSERT = "INSERT INTO PRODUTO(preco, nome, descricao, estoque) VALUES (?, ?, ?, ?);";
+    private final String INSERT = "INSERT INTO PRODUTO(nome, preco, descricao, estoque) VALUES (?, ?, ?, ?);";
 
     private final String DELETE = "DELETE FROM PRODUTO WHERE id = ?;";
 
@@ -26,8 +26,8 @@ public class ProdutoDAO {
         c.dbConnection();
         try {
             PreparedStatement pst = c.getConnection().prepareStatement(INSERT);
-            pst.setDouble(1, p.getPreco());
-            pst.setString(2, p.getNome());
+            pst.setString(1, p.getNome());
+            pst.setDouble(2, p.getPreco());
             pst.setString(3, p.getDescricao());
             pst.setInt(4, p.getEstoque());
             pst.executeUpdate();
@@ -52,8 +52,8 @@ public class ProdutoDAO {
             while (rs.next()) {
             	Produto p = new Produto(
                         rs.getInt("id"),
-                        rs.getDouble("preco"),
                         rs.getString("nome"),
+                        rs.getDouble("preco"),
                         rs.getString("descricao"),
                         rs.getInt("estoque")
                 );
