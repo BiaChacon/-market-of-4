@@ -22,14 +22,17 @@ public class CadastrarUsuario extends HttpServlet {
         
         Usuario u = new Usuario(nome, email, senha, false);
         UsuarioDAO usuarioDAO = new UsuarioDAO();
+        System.out.println(" "+u.getNome());
         
-        if(!usuarioDAO.verificarUsuario(email)) {
+       if(!usuarioDAO.verificarUsuario(email)) {
         	usuarioDAO.insertIntoUsuario(u);
+        	response.sendRedirect("/ListarProdutosServlet");
         }else {
         	response.getWriter().append("\n USUARIO JÁ EXISTE");
         }
-        
-        
 	}
+	
+	
+	
 
 }

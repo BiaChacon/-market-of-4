@@ -93,6 +93,7 @@ public class UsuarioDAO {
             pst.setString(3, u.getSenha());
             pst.setBoolean(4, u.isTipo());
             pst.executeUpdate();
+            System.out.println("passou aqui e inserio");
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionDatabase.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erro" + ex);
