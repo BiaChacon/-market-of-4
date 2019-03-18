@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import modelo.Produto;
+import persistencia.ProdutoDAO;
 
 @WebServlet("/ListaProdutosServlet")
 public class ListaProdutosServlet extends HttpServlet {
@@ -18,55 +22,50 @@ public class ListaProdutosServlet extends HttpServlet {
     	
     	PrintWriter out = resp.getWriter();
 		resp.setContentType("text/html");
-		
-    	HttpSession session = req.getSession(true);
-    	Integer acesso = (Integer) session.getAttribute("acesso");
     	
-    	if(acesso == null) {
-    		acesso = 0;
+    	out.println(
+                "<html>\n" +
+                "<head><title>Lista Produtos</title></head>\n"+
+                "<body>\n"+
+                "<h1>Lista Produtos</h1>"+
+                "<table border = '1'><thead>"+
+                "<tr>"+
+                	"<th>Nome</th>"+
+                	"<th>Descrição</th>"+
+                	"<th>Preço</th>"+
+                	"<th>Estoque</th>"+
+                	"<th></th>"+
+                "</tr></thead>");
+   
+    	List<Produto> listaProdutos;
+    	
+    	ProdutoDAO produtoDAO = new ProdutoDAO();
+    	
+    	
+    	listaProdutos = produtoDAO.readProduto();
+    	
+    	for(int i=0; i<listaProdutos.size(); i++){
     		out.println(
-                    "<html>\n" +
-                    "<head><title>Lista Produtos</title></head>\n"+
-                    "<body>\n"+
-                    "<h1>Lista Produtos</h1>"+
-                    "<table>"+
-                    "<tr>"+
-                    	"<th>Nome</th>"+
-                    	"<th>Descrição</th>"+
-                    	"<th>Preço</th>"+
-                    	"<th>Estoque</th>"+
-                    	"<th>Carrinho</th>"+
-                    "</tr>");
-    		for(int i; i; i++) {
-    			out.println("<tr>"+
-    					
-    					"</tr>");
-    		}
+    			"<tbody>"+
+                "<tr>"+
+                	"<td>"+ listaProdutos.get(i).getNome() +"</th>"+
+                	"<td>"+ listaProdutos.get(i).getDescricao() +"</th>"+
+                	"<td>"+ listaProdutos.get(i).getPreco() +"</th>"+
+                	"<td>"+ listaProdutos.get(i).getEstoque() +"</th>");
     		
-    		out.println("</table>"+
-                    "</body></html>");
-    		
-    	}else {
-    		acesso++;
-    		out.println(
-                    "<html>\n" +
-                    "<head><title>HTTP Enviado</title></head>\n"+
-                    "<body>\n"+
-                    "</body></html>");
-    		
+	    	if(listaProdutos.get(i).getEstoque() >= 1) {
+	    		out.println("<td>"+ "<a href='CarrinhoServlet?id=<%=listaProdutos.get(i).getId()%>&metodo=add'>Adicionar Carrinho</a>" +"</th>");
+	    	}else {
+	    		out.println("<td>"+ "Sem estoque" +"</th>");
+	    	}
+    	
+    		out.println("</tr></tbody></table>");
     	}
-    	
-    	
+    		out.println("<br><a href='/VerCarrinhoServlet'>Ver Carrinhoo</a>");
+    		out.println("</body></html>");
     	
     	
     	super.doGet(req, resp);
     }
-    
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    	
-    	super.doPost(req, resp);
-    }
-
 
 }

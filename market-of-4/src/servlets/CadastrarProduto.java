@@ -15,12 +15,12 @@ public class CadastrarProduto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("entrou no post em");
 		String nome = request.getParameter("nome");
         String precoS = request.getParameter("preco");
         String descricao = request.getParameter("descricao");
         String estoqueS = request.getParameter("estoque");
-        
+        System.out.println("olha o nome ai"+nome);
         int estoque  = Integer.parseInt(estoqueS);
         double preco = Double.parseDouble(precoS);
         
@@ -28,6 +28,7 @@ public class CadastrarProduto extends HttpServlet {
         ProdutoDAO produtoDAO = new ProdutoDAO();
         produtoDAO.insertIntoProduto(p);
         
+        response.sendRedirect("/Logista");
 		
 	}
 

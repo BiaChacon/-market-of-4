@@ -6,6 +6,8 @@ public class Carrinho {
 	
 	ArrayList<Produto> produtos;
 	
+	public Carrinho() {}
+	
 	public Carrinho(ArrayList<Produto> produtos) {
 		super();
 		this.produtos = produtos;
