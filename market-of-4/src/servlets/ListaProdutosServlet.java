@@ -54,7 +54,7 @@ public class ListaProdutosServlet extends HttpServlet {
                 	"<td>"+ listaProdutos.get(i).getEstoque() +"</th>");
     		
 	    	if(listaProdutos.get(i).getEstoque() >= 1) {
-	    		out.println("<td>"+ "<a href='CarrinhoServlet?id=<%=listaProdutos.get(i).getId()%>&metodo=add'>Adicionar Carrinho</a>" +"</th>");
+	    		out.println("<td>"+ "<a href='CarrinhoServlet?id=listaProdutos.get(i).getId()&metodo=add'>Adicionar Carrinho</a>" +"</th>");
 	    	}else {
 	    		out.println("<td>"+ "Sem estoque" +"</th>");
 	    	}
