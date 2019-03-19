@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import modelo.Produto;
 import persistencia.ProdutoDAO;
@@ -44,9 +43,10 @@ public class ListaProdutosServlet extends HttpServlet {
     	
     	listaProdutos = produtoDAO.readProduto();
     	
+    	out.println("<tbody>");
+    	
     	for(int i=0; i<listaProdutos.size(); i++){
     		out.println(
-    			"<tbody>"+
                 "<tr>"+
                 	"<td>"+ listaProdutos.get(i).getNome() +"</th>"+
                 	"<td>"+ listaProdutos.get(i).getDescricao() +"</th>"+
@@ -58,14 +58,12 @@ public class ListaProdutosServlet extends HttpServlet {
 	    	}else {
 	    		out.println("<td>"+ "Sem estoque" +"</th>");
 	    	}
-    	
-    		out.println("</tr></tbody></table>");
     	}
-    		out.println("<br><a href='/VerCarrinhoServlet'>Ver Carrinhoo</a>");
-    		out.println("</body></html>");
     	
+    	out.println("</tr></tbody></table>");
+    	out.println("<br><a href='/VerCarrinhoServlet'>Ver Carrinhoo</a>");
+   		out.println("</body></html>");
     	
-    	super.doGet(req, resp);
     }
 
 }
