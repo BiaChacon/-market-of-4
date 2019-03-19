@@ -28,7 +28,7 @@ public class Login extends HttpServlet {
 		if(us.isTipo()) {
 		response.sendRedirect("/Logista");
 		}else {
-		response.sendRedirect("/ListaProdutoServlet");
+		response.sendRedirect("/ListaProdutosServlet");
 		}
 		
 	}

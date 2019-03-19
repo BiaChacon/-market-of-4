@@ -43,19 +43,18 @@ public class Logista extends HttpServlet {
     	
     	
     	listaProdutos = produtoDAO.readProduto();
-    	
+    	out.println("<tbody>");
     	for(int i=0; i<listaProdutos.size(); i++){
     	out.println(
-    			"<tbody>"+
                 "<tr>"+
                 	"<td>"+ listaProdutos.get(i).getId() +"</th>"+
                 	"<td>"+ listaProdutos.get(i).getNome() +"</th>"+
                 	"<td>"+ listaProdutos.get(i).getDescricao() +"</th>"+
                 	"<td>"+ listaProdutos.get(i).getPreco() +"</th>"+
                 	"<td>"+ listaProdutos.get(i).getEstoque() +"</th>"+
-                "</tr>"+
-                "</tbody></table>");
+                "</tr>");
     	}
+    	out.println("</tbody></table>");
     	out.println("<br><a href='/cadastrarProduto.html'>Cadastrar Produto</a>");
     	out.println("</body></html>");
     	
